@@ -1,0 +1,444 @@
+
+body{
+    padding-top: 70px;
+}
+
+::-webkit-scrollbar {
+    display: block !important;
+    width:5px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+    background-color: white;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #5cb85c;
+
+}
+
+.navbar-brand {
+    font-weight: bold;
+
+}
+
+.horizontal-flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#myBrand {
+    font-size: 26px;
+}
+
+#myCarousel {
+    top: 0;
+    margin-top: 0;
+}
+
+.carousel {
+    margin-top: 0;
+}
+
+
+    /* For "Search Bar" */
+.mysearch, input[type=text], input[type=number], input[type=date],input[type=time] {
+    height:45px;
+    width: 152px;
+    box-sizing: border-box;
+    border: 2px solid rgb(51, 226, 28);
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: rgb(255, 255, 255);
+    /* background-image: url('{% static "/img/search-icon-png-4.png" %}'); */
+    /* background-image: url('{{ STATIC_URL }}/static/img/search-icon-png-4.png');     */
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 30px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+.mysearch, input[type=text]:focus {
+    width: 80%;
+    border-color: #1481ca;
+    box-shadow: 0px 7px 7px rgba(0, 0, 0, 0.075) inset, 0px 0px 30px #1481ca;
+}
+
+#search-icon:hover {
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.1); /* Safari 3-8 */
+    transform: scale(1.1);
+}
+
+#search-icon {
+    transition: transform .2s;
+}
+
+.auth_links {
+    color: yellow;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.marketing {
+    margin-top: 50px;
+}
+
+.image-container{
+    /* Location of the image */
+  /*background: url("/static/img/clay-banks-LjqARJaJotc-unsplash.jpg");*/
+  /*background-image: url("/static/img/clay-banks-LjqARJaJotc-unsplash.jpg");*/
+
+  /* Background image is centered vertically and horizontally at all times */
+  background-position: center;
+
+  /* Background image doesn't tile */
+  background-repeat: no-repeat;
+
+  /* Background image is fixed in the viewport so that it doesn't move when
+     the content's height is greater than the image's height */
+  background-attachment: fixed;
+
+  /* This is what makes the background image rescale based
+     on the container's size */
+  background-size: cover;
+
+  /* Set a background color that will be displayed
+     while the background image is loading */
+  /*background-color: #464646;*/
+  /*background-color: red;*/
+
+  /*height: 100%;*/
+  /*width: 100%;*/
+}
+
+.input-group-prepend {
+    font-weight: bolder;
+}
+
+.panel-footer {
+    background-color: white;
+}
+
+.hover-glow-coral:hover {
+    box-shadow: 15px 15px 0px 0px coral;
+}
+
+#basic-addon1 {
+    color: white;
+    background-color: rgb(41, 28, 28);
+    /* border: none; */
+}
+
+
+
+
+    /* ################################################################### */
+
+
+
+
+
+
+
+    /*   Profile Image CSS   */
+
+    .fb-profile img.fb-image-lg{
+        z-index: 0;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .fb-image-profile
+    {
+        margin: -90px 10px 0px 50px;
+        z-index: 9;
+        width: 20%;
+    }
+
+    @media (max-width:768px)
+    {
+
+    .fb-profile-text>h1{
+        font-weight: 700;
+        font-size:16px;
+    }
+
+    .fb-image-profile
+    {
+        margin: -45px 10px 0px 25px;
+        z-index: 9;
+        width: 20%;
+    }
+    }
+
+
+
+      /*    Scrollable Table    */
+.table-responsive {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 200px;
+    padding: 20px;
+    /* border: 3px solid green;     */
+}
+
+.mytable {
+    display: flex;
+    flex-flow: column wrap;
+    width: 30%;
+    height: 300px;
+    border: 3px solid green;
+}
+
+.mythead {
+    flex: 0 0 auto;
+    background-color: #5cb85c;
+    text-align: center;
+}
+
+.mytbody {
+    /* flex: auto; */
+    /* display: block; */
+    /* overflow-y: auto; */
+    overflow-x: hidden;
+}
+
+.mytr {
+    width: 100%;
+    display: table;
+    /* table-layout: fixed; */
+}
+
+
+
+
+
+
+
+
+
+
+        /*     Pop On Hover CSS   */
+.popping-one:hover {
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.1); /* Safari 3-8 */
+    transform: scale(1.1);
+}
+
+.popping-one {
+    transition: transform .2s;
+}
+
+.popping-two:hover {
+    -ms-transform: scale(1.2); /* IE 9 */
+    -webkit-transform: scale(1.2); /* Safari 3-8 */
+    transform: scale(1.2);
+}
+
+.popping-two {
+    transition: transform .2s;
+}
+
+.navbar-nav > a:hover {
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.1); /* Safari 3-8 */
+    transform: scale(1.1);
+}
+
+.navbar-nav > a {
+    transition: transform .2s;
+}
+
+
+    /*    Pop On Click    */
+.click-pop {
+    transition: transform .2s;
+}
+.click-pop:active {
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.1); /* Safari 3-8 */
+    transform: scale(1.1);
+}
+
+
+
+
+
+
+    /*    Moving Fonts CSS (Slide 1)   */
+.ml2 {
+    font-weight: 900;
+    font-size: 3.5em;
+  }
+
+  .ml2 .letter {
+    display: inline-block;
+    line-height: 1em;
+  }
+
+  /*    Moving Fonts CSS (Slide 2)   */
+
+  .ml6 {
+    position: relative;
+    font-weight: 900;
+    font-size: 3.3em;
+    color: chartreuse;
+  }
+
+  .ml6 .text-wrapper {
+    position: relative;
+    display: inline-block;
+    padding-top: 0.2em;
+    padding-right: 0.05em;
+    padding-bottom: 0.1em;
+    overflow: hidden;
+  }
+
+  .ml6 .letter {
+    display: inline-block;
+    line-height: 1em;
+  }
+
+
+  /*    Moving Fonts CSS (Slide 2)   */
+
+  .ml9 {
+    position: relative;
+    font-weight: 200;
+    font-size: 4em;
+  }
+
+  .ml9 .text-wrapper {
+    position: relative;
+    display: inline-block;
+    padding-top: 0.2em;
+    padding-right: 0.05em;
+    padding-bottom: 0.1em;
+    overflow: hidden;
+  }
+
+  .ml9 .letter {
+    transform-origin: 50% 100%;
+    display: inline-block;
+    line-height: 1em;
+  }
+
+
+
+  /*    Meet Our Team    */
+#teamJumbo {
+    box-shadow: 30px 30px rgb(68, 81, 255);
+}
+
+#teamHead {
+    letter-spacing: 5px;
+}
+
+.ml15 {
+    font-weight: 800;
+    font-size: 3.8em;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+  }
+
+  .ml15 .word {
+    display: inline;
+    line-height: 1em;
+  }
+
+
+
+
+
+
+
+    /*    For "About Us" CSS    */
+.image-aboutus-banner {
+    /*background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url("https://images.pexels.com/photos/556962/pexels-photo-556962.jpeg?w=940&h=650&auto=compress&cs=tinysrgb");*/
+    /*background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url("/static/img/about_us.jpg"); */
+    background: url("/static/img/about_us.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    color: #fff;
+    padding-top: 80px;
+    padding-bottom:80px;
+ }
+
+  .image-aboutus-sm-banner {
+    /*background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url("/static/img/about_us.jpg"); */
+    *background: url("/static/img/about_us.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    color: #fff;
+    padding-top: 20px;
+    padding-bottom:20px;
+ }
+.lg-text {
+    font-size:52px;
+    font-weight: 600;
+    text-transform: none;
+    color:#fff;
+    cursor: pointer;
+    padding-left: 10px;
+}
+.image-aboutus-para {
+    color:#fff;
+    padding-left: 10px;
+}
+
+.hover-glow:hover {
+    box-shadow: 0px 0px 40px white;
+}
+
+.hover-glow-dark:hover {
+    box-shadow: 0px 0px 30px black;
+}
+
+
+
+
+
+/* #myInput {
+    background-image: url('/css/searchicon.png');
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 40%;
+    font-size: 16px;
+    padding: 8px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+    display: inline-block;
+} */
+
+
+.img-wrapper {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.Inzoom {
+    -webkit-transition: all 0.7s ease; /* Safari and Chrome */
+  	-moz-transition: all 0.7s ease; /* Firefox */
+  	-o-transition: all 0.7s ease; /* IE 9 */
+  	-ms-transition: all 0.7s ease; /* Opera */
+  	transition: all 0.7s ease;
+}
+
+.Inzoom:hover {
+    transform:scale(1.3);
+    -ms-transform:scale(1.3); /* IE 9 */
+    -moz-transform:scale(1.3); /* Firefox */
+    -webkit-transform:scale(1.3); /* Safari and Chrome */
+    -o-transform:scale(1.3); /* Opera */
+}
