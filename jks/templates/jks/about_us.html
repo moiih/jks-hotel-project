@@ -1,0 +1,251 @@
+{% extends 'jks/navBar.html' %}
+
+{% block title %} About-Us {% endblock title %}
+
+{% load widget_tweaks %}
+{% load custom_templatetags %}
+
+{% load static %}
+
+{% block main %}
+
+<div id="about_us" class="image-aboutus-banner">
+    <div class="container">
+     <div class="row">
+         <div class="col-md-12">
+            <h1 class="lg-text">About Us</h1>
+            <p class="image-aboutus-para"><b>#</b> JKS_Group....Always the Extraordinary Ones !!</p>
+
+            <p id="fixedHandles" class="hover-glow" style="margin-top: 10px; padding-left: 10px; width: fit-content; border-radius: 10px;"> <i class="fab fa-whatsapp fa-3x"></i> &nbsp; &nbsp; <i class="fab fa-facebook fa-3x"> </i> &nbsp; &nbsp; <i class="fab fa-instagram fa-3x"> </i> &nbsp; &nbsp; <i class="fab fa-twitter fa-3x"> </i> </p>
+         </div>
+
+        <div id="Handles" style="margin-left: 10px;">
+          <p style="padding-top: 15px;" class="popping-one"><i class="fab fa-whatsapp fa-2x" style="color: #25d366;"></i> &nbsp; &nbsp; <span style="margin-bottom: 30px;">+91 961465****</span> </p>
+          <p style="padding-top: 15px;" class="popping-one"><i class="fab fa-facebook fa-2x" style="color: #5678c2;"> </i> &nbsp; &nbsp; <span>www.facebook.com/JKS_Hotels</span> </p>
+          <p style="padding-top: 15px;" class="popping-one"><i class="fab fa-instagram fa-2x" style="color: #ff2888;"> </i> &nbsp; &nbsp; <span>#jks_hotels</span> </p>
+          <p style="padding-top: 15px;" class="popping-one"><i class="fab fa-twitter fa-2x" style="color: #08a0e9;"> </i> &nbsp; &nbsp; <span>@JKS_Group</span> </p>
+        </div>
+
+        <div id="postBtn" style="margin-top: 10px;">
+          {% if user.is_authenticated %}
+            <button id="writePost" class="btn btn-outline-warning" style="margin-left: 15px;"> <span id="btnValue">Write New Post</span> </button>
+          {% endif %}
+            <button id="hide_Aboutus" class="btn btn-outline-light" style="margin-left: 15px;">Hide Details</button>
+            <!-- <button id="timeline" class="btn btn-outline-primary" style="margin-left: 15px;">My Timeline</button> -->
+        </div>
+
+        <br><br>
+        <!-- <div class="postForm" style=""> -->
+        <form action="" method="POST" enctype="multipart/form-data" id="postForm" style="margin-top: 0px; margin-left: 25px; padding: 10px; padding-left: 30px; border: 2px solid #25d366; border-radius: 8px;">
+            {% csrf_token %}
+             <!-- {{ post.as_p }} -->
+             <label for="img"><b>Upload Post Image :</b></label>
+             {% render_field post.post_img id="img" class="form-control btn btn-danger" style="background: none; border: none;" %} <br><br>
+
+             <label for="caption"><b>Write Your Caption :</b></label>
+             {% render_field post.post_caption id="caption" class="form-control" %} <br>
+
+             <label for="htag"><b>Add Hash Tag(s) To Your Post :</b></label>
+             {% render_field post.post_hashtags id="htags" class="form-control" %} <br>
+
+             <input type="submit" value="Post Now !" class="btn btn-primary" style="font-weight: bold; width: 100%; margin: 0 auto;">
+             <br>
+        </form>
+        <!-- </div> -->
+
+     </div>
+    </div>
+</div>
+
+<!-- <form action="" method="POST" enctype="multipart/form-data" style="margin-top: 30px; padding-left: 10px;">
+    {% csrf_token %}
+{{ post.as_p }}
+<input type="submit" value="Post Now!" class="btn btn-outline-success">
+</form> -->
+
+<!--<br>-->
+<!--<div id="myBannr" class="h2 p-2 mb-5 bg-danger rounded-pill click-pop" style="box-shadow: 15px 10px 0px yellow; color: white; max-width: 500px; text-align: center; margin: 0 auto;"><b style="font-size: 40px;">&bull;</b> <span id="posts_banner">All Members Posts</span> <b style="font-size: 40px;">&bull;</b></div>-->
+<!--<hr class="my-4" style="width: 80%; margin: 0 auto;">-->
+
+<div id="all_posts">
+{% if postm %}
+
+<br>
+<div id="myBannr" class="h2 p-2 mb-5 bg-danger rounded-pill click-pop" style="box-shadow: 15px 10px 0px yellow; color: white; max-width: 500px; text-align: center; margin: 0 auto;"><b style="font-size: 40px;">
+    &bull;</b> <span id="posts_banner">All Members Posts</span> <b style="font-size: 40px;">&bull;</b>
+</div>
+<hr class="my-4" style="width: 80%; margin: 0 auto;">
+
+{% for pm in postm reversed %}
+
+<!-- <span id="post_if"></span>       -->
+<div class="container" style="margin: 0 auto;">
+    {% if forloop.counter|check_oddeve %}
+            <!-- <hr class="my-4" style="height: 10px;"> -->
+
+            <div class="col-md-7 shadow-lg rounded popping-one" style="float: left; margin-bottom: 30px; background-color: #524e4e;">
+                <div class="row g-0 rounded overflow-hidden flex-md-row mb-4 h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <a href="{% url 'profile' pm.profile.user_id %}" style="text-decoration: black underline;">
+                            <strong class="d-inline-block mb-2 text-success"> <img src="{{ pm.profile.profile_img.url }}" class="rounded-circle hover-glow" height="50px" width="50px" alt="Post Image"> &nbsp;{{ pm.profile.name }}</strong>
+                        </a>
+                        <h3 class="mb-0">{{ pm.post_hashtags }}</h3>
+                        <div class="mb-1 text-muted">{{ pm.post_date }}</div>
+                        <p class="mb-auto" style="color: white; font-family: cursive; font-weight: bold;">{{ pm.post_caption }}</p>
+                        <!-- <span style="margin-top: 7px;"> <i class="fab fa-whatsapp fa-2x"></i> &nbsp; <i class="fab fa-facebook fa-2x"></i> &nbsp; <i class="fab fa-instagram fa-2x"></i> &nbsp; <i class="fab fa-twitter fa-2x"></i> </span> -->
+                        <!-- <div class="mb-1 text-muted" style="float: right; margin-left: 150px;">~ {{ pm.post_time }}</div> -->
+                        <!-- <div class="mb-1 text-muted"><a href="{% url 'delete_post' pm.id %}" class="click-pop" style="float: left; color: black;"><i class="fas fa-trash fa-1x hover-glow"></i></a> <span style="float: right; margin-left: 150px;">~ {{ pm.post_time }}</span></div> -->
+
+                        <div class="mb-1 text-muted">
+                            {% ifequal pm.profile.user_id user.id %}
+                                <a href="{% url 'delete_post' pm.id %}" style="float: left; color: black;" class="click-pop"><i class="fas fa-trash fa-1x hover-glow"></i></a>
+                            {% endifequal %}
+                                <span style="float: right; margin-left: 150px;">~ {{ pm.post_time }}</span>
+                        </div>
+                    </div>
+
+
+                    {% if pm.post_img.url %}
+                        <div class="col-auto" style="margin: 0 auto; display: flex; flex-flow: column wrap;">
+                            <img src="{{ pm.post_img.url }}" class="rounded" style="margin: 0 auto; padding-top: 15px; margin-right: 10px;" height="250px" width="210px" alt="Post Image">
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+    {% else %}
+        <!-- <hr class="my-4" style="height: 10px;"> -->
+
+        <div class="col-md-7 order-md-2 rounded shadow popping-one" style="float: right; margin-bottom: 30px;">
+            <div class="row g-0 rounded overflow-hidden flex-md-row mb-4 h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <a href="{% url 'profile' pm.profile.user_id %}">
+                        <strong class="d-inline-block mb-2 text-success"> <img src="{{ pm.profile.profile_img.url }}" class="rounded-circle hover-glow-dark" height="50px" width="50px" alt="Post Image"> &nbsp;{{ pm.profile.name }}</strong>
+                    </a>
+                    <h3 class="mb-0">{{ pm.post_hashtags }}</h3>
+                    <div class="mb-1 text-muted">{{ pm.post_date }}</div>
+                    <p class="mb-auto" style="font-family: cursive; font-weight: bold;">{{ pm.post_caption }}</p>
+                    <!-- <span style="margin-top: 7px;"> <i class="fab fa-whatsapp fa-2x"></i> &nbsp; <i class="fab fa-facebook fa-2x"></i> &nbsp; <i class="fab fa-instagram fa-2x"></i> &nbsp; <i class="fab fa-twitter fa-2x"></i> </span> -->
+                    <!-- <div class="mb-1 text-muted" style="float: right; margin-left: 150px;">~ {{ pm.post_time }}</div> -->
+                    <!-- <div class="mb-1 text-muted"><a href="{% url 'delete_post' pm.id %}" class="click-pop" style="float: left; color: black;"><i class="fas fa-trash fa-1x hover-glow"></i></a> <span style="float: right; margin-left: 150px;">~ {{ pm.post_time }}</span></div> -->
+
+                    <div class="mb-1 text-muted">
+                        {% ifequal pm.profile.user_id user.id %}
+                            <a href="{% url 'delete_post' pm.id %}" style="float: left; color: black;" class="click-pop"><i class="fas fa-trash fa-1x hover-glow"></i></a>
+                        {% endifequal %}
+                            <span style="float: right; margin-left: 150px;">~ {{ pm.post_time }}</span>
+                    </div>
+                </div>
+
+
+                {% if pm.post_img.url %}
+                    <div class="col-auto" style="margin: 0 auto; display: flex; flex-flow: column wrap;">
+                        <img src="{{ pm.post_img.url }}" class="rounded" style="margin: 0 auto; padding-top: 15px; margin-right: 10px;" height="250px" width="210px" alt="Post Image">
+                    </div>
+                {% endif %}
+            </div>
+
+    {% endif %}
+
+</div>
+<!-- <span id="post_endif"></span>       -->
+
+{% endfor %}
+
+{% else %}
+
+    <hr class="my-4" style="width: 80%; margin: 0 auto;">
+  {% if user.is_authenticated %}
+    <div id="myBannr" class="h2 p-2 mb-5 bg-danger rounded-pill click-pop" style="box-shadow: 15px 10px 0px yellow; color: white; max-width: 500px; text-align: center; margin: 0 auto;"><b style="font-size: 40px;">&bull;</b> <span id="posts_banner">
+        No Posts Yet
+        </span> <b style="font-size: 40px;">&bull;</b></div>
+    <hr class="my-4" style="width: 80%; margin: 0 auto;">
+
+    <br>
+    <p style="margin: 0 auto; text-align: center;"><strong><i class="fas fa-info-circle"></i>
+        Posts Are Great Ways To Communicate With Other People. Don't Wait....Be The First One To Create New A Post Today !!
+    </strong></p>
+    </div>
+    </div>
+  {% else %}
+    <div id="myBannr" class="h2 p-2 mb-5 bg-danger rounded-pill click-pop" style="box-shadow : 15px 10px 0px yellow; color: white; max-width: 500px; text-align: center; margin: 0 auto;"><b style="font-size: 40px;">&bull; </b> <span id="posts_banner">
+        Login To See Posts
+        </span> <b style="fomt-size: 40px;">&bull;</b></div>
+        <br>
+  {% endif %}
+
+
+    <br><br><br><br>
+
+{% endif %}
+</div>
+<br><br><br>
+
+
+
+        <!-- Script Down Here. -->
+
+<script>
+
+    $("#Handles").hide();
+    $("#fixedHandles").click(function() {
+        $("#fixedHandles").fadeOut(500);
+        $("#Handles").slideDown(500);
+        //setInterval(function() {  $("#Handles").fadeOut(600); $("#fixedHandles").slideDown(1000); }, 15000);
+    });
+
+    $("#Handles").click(function() {
+        $("#Handles").fadeOut(500);
+        $("#fixedHandles").slideDown(500);
+    });
+
+    $("#postForm").hide();
+    $("#writePost").click(function() {
+        if( document.getElementById("btnValue").innerHTML == "Write New Post" ) {
+            document.getElementById("btnValue").innerHTML = "Cancel This Post";
+            $("#postForm").slideDown(500);
+        }
+        else {
+            document.getElementById("btnValue").innerHTML = "Write New Post";
+            $("#postForm").slideUp(500);
+        }
+    });
+
+    $("#hide_Aboutus").click(function() {
+        $("#about_us").slideUp();
+        //$("#posts_banner").html("Show About-Us");
+        $("#myBannr").css("cursor", "pointer");
+    });
+
+    $("#myBannr").click(function() {
+        $("#about_us").slideToggle();
+    });
+
+
+    /*$("#myBannr").click(function() {
+        alert("kjkjb");
+        $("#about_us").slideDown();
+        $("#posts_banner").html("All Members Posts");
+    }); */
+
+
+    /*$("#my_posts").hide();
+    $("#timeline").click(function() {
+        $("#Handles").slideUp(500);
+        $("#fixedHandles").fadeIn(500);
+        document.getElementById("btnValue").innerHTML = "Write New Post";
+        $("#postForm").slideUp(500);
+
+        $("#my_posts").show();
+
+        $("#post_if").html("ifequal pm.profile.user_id user.id");
+        $("#post_endif").html("endifequal");
+        document.getElementById("post_if").innerHTML = "ifequal pm.profile.user_id user.id";
+        document.getElementById("post_endif").innerHTML = "endifequal";
+    });*/
+
+</script>
+
+
+
+{% endblock %}

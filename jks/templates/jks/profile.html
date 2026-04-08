@@ -1,0 +1,357 @@
+{% extends 'jks/navBar.html' %}
+
+{% block title %} Profile {% endblock title %}
+
+{% load widget_tweaks %}
+{% load custom_templatetags %}
+
+{% block main %}
+
+<!-- <script src="jquery.min.js"></script>
+<script src="jquery.firstVisitPopup.js"></script> -->
+
+<!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'> -->
+<!-- <div class="container-fluid" style="background-color: coral;"> -->
+
+
+    <div class="container">
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="margin-left: 380px;">
+            <div class="modal-content"
+                style="background: rgba( 255, 255, 255, 0.30 );
+                        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+                        backdrop-filter: blur( 5.5px );
+                        -webkit-backdrop-filter: blur( 5.5px );
+                        border-radius: 10px;
+                        border: 1px solid rgba( 255, 255, 255, 0.18 );
+                        width: 800px;
+                        height: 400px;
+                        padding-bottom: 678px;
+            ">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="font-size: 23px;">
+                    <i class="fas fa-window-maximize"></i> Profile Image Viewer
+                </h5>
+                <button type="button" class="close btn btn-danger" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+
+                    <div id="enlarge_Img">
+                        <img id="big_Img" src="" height="510px" width="770px" alt="">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-danger" style="background-color: none;" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ###### Script For Image Viewer ###### -->
+    <script>
+        //console.log('Image Clicked');
+        function show_big_image(small_image) {
+            //alert(small_image);
+            var bImg = $('#'+small_image).attr('src');
+            //alert(bImg);
+            $('#big_Img').attr("src", bImg);
+            $('#enlarge_Img').show();
+        }
+    </script>
+
+
+    {% if profile %}
+
+        {% for pf in profile %}
+
+            <div class="fb-profile">
+                <img align="left" id="small_image_bg" class="fb-image-lg" onclick="show_big_image(this.id)" src="{{ pf.bg_img.url }}" alt="Background Image" height="300px" style="width: 100%; margin-top: 3px;" data-toggle="modal" data-target="#exampleModal"/>
+                <!-- <nav class="sticky-top"> -->
+
+                    <!-- #### Enlarge Image Buton Trigger #### -->
+                    <img align="left" id="small_image_profile" class="fb-image-profile thumbnail rounded-circle popping-two" onclick="show_big_image(this.id)" src="{{ pf.profile_img.url }}" alt="Profile Image" style="max-width: 300px; min-width: 100px; border: 4px #5bc0de solid; border-radius: 100%;" data-toggle="modal" data-target="#exampleModal"/>
+
+                    <!-- ##### Enlarge Image Script JS ##### -->
+
+                <!-- </nav> -->
+                <div class="fb-profile-text">
+                    <h1> &nbsp; {{ pf.name }} </h1>
+                    <p style="font-weight: bold; font-family: cursive;"> &nbsp; ~ {{ pf.desc }} </p>
+                </div>
+            </div>
+
+            <div class="container">
+                <!-- Jumbotron -->
+                <div class="container" style="margin-bottom: 20px;">
+                <div class="jumbotron">
+
+                        <!-- #########   Create Post Button   ######### -->
+
+                    {% ifequal friend_id user.id %}
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary btn-lg" style="margin-bottom: 25px; width: 100%;" data-toggle="modal" data-target="#staticBackdrop">
+                        Edit Profile
+                    </button>
+
+                    <button type="button" id="writePost" class="btn btn-warning btn-lg" style="margin-bottom: 10px; width: 100%;"> <span id="postbtnValue" style="font-weight: bolder; letter-spacing: 3px;">Create New Post</span> </button>
+
+                    <form action="" method="POST" enctype="multipart/form-data" id="postForm" style="margin-top: 0px; margin-left: 0px; padding: 20px; padding-left: 30px; border: 3px solid #5cb85c; border-radius: 8px;">
+                        {% csrf_token %}
+                         <!-- {{ post.as_p }} -->
+                         <label for="img">Upload Post Image :</label>
+                         {% render_field post.post_img id="img" class="form-control btn btn-danger" style="background: none; border: none; color: black;" %} <br><br>
+
+                         <label for="caption">Write Your Caption :</label>
+                         {% render_field post.post_caption id="caption" class="form-control" %} <br>
+
+                         <label for="htag">Add Hash Tag(s) To Your Post :</label>
+                         {% render_field post.post_hashtags id="htags" class="form-control" %} <br>
+
+                         <input type="submit" value="Post Now !" class="btn btn-primary">
+                         <br>
+                    </form>
+
+                    {% else %}
+
+                        <button class="btn btn-outline-danger" style="width: 100%;">This Isn't Your Profile. You Can Only See Posts Here !!</button>
+
+                    {% endifequal %}
+
+                </div>
+                </div>
+
+
+                <!-- ###############    Posts Down Here     ############### -->
+
+                {% ifequal friend_id user.id %}
+                    <div id="myBannr" class="h2 p-2 mb-5 bg-dark rounded-pill" style="box-shadow: 15px 10px 0px greenyellow; color: white; max-width: 500px; text-align: center; margin: 0 auto;"><b style="font-size: 40px;">&bull;</b> <span id="posts_banner">Your Timeline</span> <b style="font-size: 40px;">&bull;</b></div>
+                {% else %}
+                    <div id="myBannr" class="h2 p-2 mb-5 bg-dark rounded-pill" style="box-shadow: 15px 10px 0px greenyellow; color: white; max-width: 500px; text-align: center; margin: 0 auto;"><b style="font-size: 40px;">&bull;</b> <span id="posts_banner">{{ pf.name }}'s Timeline</span> <b style="font-size: 40px;">&bull;</b></div>
+                {% endifequal %}
+                    <hr class="my-4" style="width: 80%; margin: 0 auto;">
+
+        {% endfor %}
+
+
+                <div id="all_posts">
+                {% if postm %}
+
+                    <!-- <input type="text" id="myInput" onkeyup="tagSearch()" style="width: 40%;" placeholder="&#128270; Search for #hashtags... e.g., #flower #colors" title="Type in a name"> -->
+                    <div id="posts" class="container" style="margin: 0 auto;">
+                    {% for pm in postm reversed %}
+                    {% ifequal pm.profile.user_id friend_id %}
+
+
+                        <!-- <hr class="my-4" style="height: 10px;"> -->
+
+                        {% ifequal friend_id user.id %}
+                           <div id="p1" class="col-md-7 shadow-lg rounded popping-one" style="margin: 0 auto; margin-bottom: 30px; background-color: #524e4e;">
+                        {% else %}
+                            <div id="p1" class="col-md-7 shadow-lg rounded click-pop" style="margin: 0 auto; margin-bottom: 30px; background-color: #524e4e;">
+                        {% endifequal %}
+                            <div id="p2" class="row g-0 rounded overflow-hidden flex-md-row mb-4 h-md-250 position-relative">
+                                <div id="p3" class="col p-4 d-flex flex-column position-static">
+                                    <strong class="d-inline-block mb-2 text-success"> <img id="profile_icon_img" onclick="show_big_image(this.id)" src="{{ pm.profile.profile_img.url }}" class="rounded-circle" height="50px" width="50px" alt="Post Image"> &nbsp;{{ pm.profile.name }}</strong>
+
+                                    <!-- <ul id="myUL"><li style="list-style-type: none;"><a href="#">{{ pm.post_hashtags }}</a></li></ul> -->
+                                    <h3 id="p4" class="mb-0">{{ pm.post_hashtags }}</h3>
+                                    <div class="mb-1 text-muted">{{ pm.post_date }}</div>
+                                    <p class="mb-auto" style="color: white; font-family: cursive; font-weight: bold;">{{ pm.post_caption }}</p>
+                                    <!-- <span style="margin-top: 7px;"> <i class="fab fa-whatsapp fa-2x"></i> &nbsp; <i class="fab fa-facebook fa-2x"></i> &nbsp; <i class="fab fa-instagram fa-2x"></i> &nbsp; <i class="fab fa-twitter fa-2x"></i> </span> -->
+                                    <!-- <div class="mb-1 text-muted" style="float: right; margin-left: 190px;">~ {{ pm.post_time }}</div> -->
+
+                                    <div class="mb-1 text-muted">
+                                    {% ifequal friend_id user.id %}
+                                        <a href="{% url 'delete_post' pm.id %}" id="remove_post25" style="float: left; color: black;" class="rem_post25 click-pop"><i id="remove_post26" class="fas fa-trash fa-1x hover-glow"></i></a>
+                                    {% endifequal %}
+                                        <span style="float: right; margin-left: 190px;">~ {{ pm.post_time }}</span>
+                                    </div>
+                                </div>
+
+
+                                {% if pm.post_img.url %}
+                                    <div class="col-auto" style="margin: 0 auto; display: flex; flex-flow: column wrap;">
+                                        <img id="profile_post_img" onclick="show_big_image(this.id)" src="{{ pm.post_img.url }}" class="rounded" style="margin: 0 auto; padding-top: 15px; margin-right: 10px;" height="250px" width="210px" alt="Post Image">
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <br>
+                        </div>
+
+                    {% endifequal %}
+                    {% endfor %}
+                    </div>
+                {% endif %}
+                </div>
+                <!-- ###############    Posts End     ############### -->
+
+            </div>
+
+            {% ifequal friend_id user.id %}
+            <br>
+            <div class="container" style="margin: 0 auto;">
+            <div style="margin: 0 auto;">
+                <p style="margin: 0 auto;"><strong>
+                    <b><svg style="margin-bottom: 4px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                    </svg></b>
+                  A Post Is Nice Way To Communicate With Other People. Go And Create Another One Today !!</strong></p>
+            </div>
+            </div>
+            <br><br><br><br>
+            {% endifequal %}
+
+
+    {% else %}
+
+            <!--   ################   Sample Profile   ####################   -->
+
+        <div class="fb-profile">
+            <img align="left" id="dummy_profile_image" class="fb-image-lg" onclick="show_big_image(this.id)" src="https://images.unsplash.com/photo-1501785888041-af3ef285b470" alt="Profile image" height="300px" style="width: 100%; margin-top: 3px;"/>
+            <!-- <nav class="sticky-top"> -->
+                <img align="left" id="dummy_background_image" class="fb-image-profile thumbnail rounded-circle popping-one" src="https://images.unsplash.com/photo-1665686308827-eb62e4f6604d" alt="Profile image" style="max-width: 300px; min-width: 100px; border: 4px #5bc0de solid; border-radius: 100%;"/>
+            <!-- </nav> -->
+            <div class="fb-profile-text">
+                <h1>Eli Macy</h1>
+                <p>This is Eli and Its my Bio....Curious To Know whats yours !!</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- Jumbotron -->
+            <div class="container" style="margin-bottom: 20px;">
+            <div class="jumbotron">
+                <h1>This Is A Sample Profile. Click Below To Set Your Own <b>&Darr;</b></h1>
+
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-outline-primary btn-lg" data-toggle="modal" data-target="#staticBackdrop">
+                    Configure Your Profile Here!
+                </button>
+            </div>
+            </div>
+
+            <hr class="my4">
+
+        </div>
+<!-- </div> -->
+
+    {% endif %}
+
+
+
+
+        <!-- ##############   Profile Set-Up Module  ############### -->
+
+    <!--<div class="modal fade" id="staticBackdrop" style="background-color: #5cb85c;" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">-->
+    <div class="modal fade" id="staticBackdrop" style="background-image: linear-gradient(to left bottom, #2ece33, #00c695, #00b6e7, #009cff, #0074fb, #635be4, #873cc7, #9c00a6, #c30087, #db0062, #e5003c, #e10d0d);" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content" style="background-color: yellow;">
+            <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Profile Configuration...</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body" style="background-color: black; color: white;">
+
+                <form action="" method="POST" enctype="multipart/form-data" id="profileForm" class="form-group" style="margin-left: 30px;">
+
+                    {% csrf_token %}
+                    <label for="nm"> Your Name: </label><br>
+                    {% render_field pform.name id="nm" class="form-control" %}
+                    <br><br>
+
+                    <label for="des"> Profile Description: </label><br>
+                    {% render_field pform.desc id="des" class="form-control" %}
+                    <br><br>
+
+                    <label for="pimage"> Upload Profile Picture: </label><br>
+                    {% render_field pform.profile_img id="pimage" class="form-control" style="outline: none;" %}
+                    <br><br>
+
+                    <label for="bgimage"> Upload Background Picture: </label><br>
+                    {% render_field pform.bg_img id="bgimage" class="form-control" style="outline: none;" %}
+                    <br><br>
+
+                    <!-- <input type="submit" class="btn btn-primary" value="Ready To Submit"> -->
+
+
+
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> &nbsp;
+            <button type="submit" class="btn btn-primary" onsubmit="submit_profile_form()"> Ready To Submit </button>
+            </form>
+            </div>
+        </div>
+        </div>
+
+
+
+    </div>
+
+
+        <!-- #############   Spinner  ############### -->
+    <!--<div id="mySpinner" class="spinner-border text-success" role="status">-->
+    <!--    <span class="sr-only">Loading...</span>-->
+    <!--</div>-->
+
+
+    <script>
+        //$("#staticBackdrop").modal('show');
+
+        // $("#mySpinner").hide();
+        // function myLoader() {
+        //     $("#mySpinner").show();
+        // }
+
+        function submit_profile_form() {
+            document.getElementById("profileForm").submit();
+        }
+
+        function tagSearch() {
+            var input, filter, ul, li, a, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            ul = document.getElementsById("posts");
+            li = ul.getElementsByTagName("li");
+
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+        }
+
+
+        $("#postForm").hide();
+        $("#writePost").click(function() {
+            //alert("dkvjk");
+            if( document.getElementById("postbtnValue").innerHTML == "Create New Post" ) {
+                document.getElementById("postbtnValue").innerHTML = "Cancel This Post";
+                $("#postForm").slideDown(500);
+            }
+            else {
+                document.getElementById("postbtnValue").innerHTML = "Create New Post";
+                $("#postForm").slideUp(500);
+            }
+        });
+
+        $("#writePost2").click(function() {
+            $("#postForm").slideDown(500);
+        });
+    </script>
+
+{% endblock main %}

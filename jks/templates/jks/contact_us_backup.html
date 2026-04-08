@@ -1,0 +1,135 @@
+{% extends 'jks/navBar.html' %}
+
+{% block title %} Contact-Us {% endblock title %}
+
+{% load widget_tweaks %}
+
+{% block main %}
+
+    <div class="table-responsive" id="outer">
+        <div class="container" id="chat_container">
+
+            <!-- <table class="table table-hover" id="job-table" style="border: none;">
+                <thead class="mythead">
+                    <tr class="text-center">
+                        <th scope="col">Be a part of our chats !!</th>
+                    </tr>
+                </thead>
+            </table> -->
+            <button type="button" class="btn btn-success" style="width: 100%; margin-bottom: 2px; border-radius: 0; box-shadow: 0 10px 15px rgb(230, 197, 14);"> Chat Here !! </button>
+            <table class="mytable table table-hover" id="chat-table">
+
+                {% if msg  %}
+                <tbody class="mytbody text-center" id="t-body">
+                    {% for mg in msg %}
+                    <tr class="mytr" id="tb-col">
+                        {% ifequal mg.user_id curr_user %}
+                            <td id="chat_msg" style="float: right; border-top: none;"> {{  mg.message }} </td>
+                        {% else %}
+                            <td id="chat_msg" style="float: left; border-top: none;"> {{  mg.message }} </td>
+                        {% endifequal %}
+                    </tr>
+                    {% endfor %}
+
+                {% else %}
+                        <td style="text-align: center;"> <strong>Login To View Chats !!</strong> </td>
+                </tbody>
+                {% endif %}
+            </table>
+
+
+            <div class="panel-footer">
+                <form action="" method="POST" id="chat-form" class="input-group" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input id="btn-input" type="text" name="message" class="form-control input-sm" placeholder="Type your message here..." style="border-radius: 5px; background-color: yellow;"> &nbsp;
+                    <span class="input-group-btn">
+
+                        {% if not user.is_authenticated %}
+                            <!-- <input type="submit" value=" Send " class="btn btn-warning btn-sm" id="btn-chat" style="margin-top: 6px;" onclick="filter_empty()"> -->
+                            <button type="button" class="btn btn-warning btn-sm" id="btn-chat" style="margin-top: 6px;"> Send </button>
+                        {% else %}
+                            <input type="submit" value=" Send " class="btn btn-warning btn-sm" id="btn-chat" style="margin-top: 6px;" data-toggle="tooltip" title="Please Login To Chat With Us !" disabled>
+                        {% endif %}
+
+                    </span>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <script>
+
+        $("#btn-chat").click(function() {
+
+            console.log("Send Button Clicked");
+            output = ""
+
+            let chatMessage = $("#btn-input").val();
+            var csr = $("input[name=csrfmiddlewaretoken]").val();
+            console.log(csr);
+
+            if( chatMessage == "" ) {
+                console.log("Please Enter Something To Send!");
+            }
+            else {
+                console.log(chatMessage);
+                mydata = { message: chatMessage, csrfmiddlewaretoken: csr };
+                $.ajax({
+                    url: "{% url 'contact' %}",
+                    method: "POST",
+                    async: true,
+                    data: mydata,
+                    success: function(data) {
+
+                        console.log(data.status);
+
+                        x = data.chat   // !Important
+                        if ( data.status == "Message Accepted" ) {
+                            console.log("Form Submitted Successfully!!");
+                            console.log(x); // or  console.log(data.chat);
+
+                            var curr = {{ curr_user }};
+                            console.log("Current User : "+{{curr_user}});
+                            for(i=0; i<x.length; i++) {
+                                console.log(x[i].user_id);
+
+                                if( x[i].user_id == curr ) {
+                                    output += "<tr class='mytr'> <td class='mytd' style='float: right; border-top: none;'>"
+                                            + x[i].message + "</td> </tr>";
+                                }
+                                else {
+                                    output += "<tr class='mytr'> <td class='mytd' style='float: left; border-top: none;'>"
+                                        + x[i].message + "</td> </tr>";
+                                }
+                            }
+
+                            console.log(output);
+                            $("#t-body").html(output);
+                            $("#t-body").append(output);
+
+                            $("#chat-form")[0].reset();
+
+                            $("#t-body").stop().animate({ scrollTop: $("tbody")[0].scrollHeight }, 1000 );
+                        }
+                        else {
+                            console.log("Something Went Wrong....Unable To Send Message :-(");
+                        }
+                    },
+                });
+            }
+
+        });
+
+        window.onload = function() {
+            $("#t-body").stop().animate({ scrollTop: $("tbody")[0].scrollHeight }, 1000 );
+        }
+
+
+
+    </script>
+
+
+{% endblock main %}

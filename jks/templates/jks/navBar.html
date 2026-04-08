@@ -1,0 +1,146 @@
+                    <!--  ###############    BASE PAGE   ###############  -->
+
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="{% static '/css/jStyle.css' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://kit.fontawesome.com/b3c82137d2.js" crossorigin="anonymous"></script>
+
+
+    <title>
+        {% block title %}
+            JKS Hotels
+        {% endblock title %}
+    </title>
+</head>
+
+<body>
+
+
+    <div class="container">
+
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+            <a href="{% url 'index' %}" class="navbar-brand click-pop">
+              <i style="color: #fcb85c;" class="fas fa-home fa-2x"></i> <span id="myBrand"> JKS Hotel </span>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav">
+                    <a href="{% url 'index' %}" class="nav-item nav-link active"><i class="fas fa-concierge-bell"></i> Home</a>
+                    <div class="dropdown">
+                    <a href="#services" class="nav-item nav-link active dropdown-toggle popping-one" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="mySlidedown()"><i class="fas fa-utensils"></i> Services</a>
+                      <div class="dropdown-menu" id="dmenu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{% url 'booking' %}"> Booking In JKS Hotel </a>
+                      </div>
+                    </div>
+                    <a href="{% url 'gallary' %}" class="nav-item nav-link active"><i class="fas fa-camera-retro"></i> Gallary</a>
+                    <a href="{% url 'about' %}" class="nav-item nav-link active"><i class="fas fa-info-circle"></i> Abouts Us</a>
+                    <a href="{% url 'team' %}" class="nav-item nav-link active"><i class="fab fa-teamspeak"></i> Team</a>
+                    <a href="{% url 'contact' %}" class="nav-item nav-link active"><i class="fas fa-mobile-alt"></i> Contact Us</a>
+                </div>
+                <div class="navbar-nav ml-auto">
+                  <!-- <form class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+                  </form> -->
+
+                  {% if user.is_authenticated %}
+                    <a href="{% url 'profile' user.id %}" class="auth_links nav-item nav-link active"><i class="fas fa-user-circle" style="color: yellow;"></i> My Profile</a>
+                    <a href="{% url 'logout' %}" class="auth_links nav-item nav-link active"><i class="fas fa-sign-out-alt" style="color: yellow;"></i> Logout</a>
+                  {% else %}
+                    <a href="{% url 'login' %}" class="auth_links nav-item nav-link active"><i class="fas fa-sign-in-alt" style="color: yellow;"></i> Login</a>
+                    <a href="{% url 'signup' %}" class="auth_links nav-item nav-link active"><i id="lens" class="fas fa-user-plus" style="color: yellow;"></i> SignUp</a>
+                  {% endif %}
+                      &nbsp;&nbsp;&nbsp;
+
+                  <form>
+                    <label for="input-search">
+                        <i id="search-icon" style="color: yellow; outline: none;" class="fas fa-search fa-2x fa-flip-horizontal"></i> &nbsp;
+                    </label>
+                    <input type="text" id="input-search" class="mySearch" name="search" placeholder="&#128400;&#65039;Search Members" style="font-family:Arial, FontAwesome">
+                  </form>
+                </div>
+            </div>
+        </nav>
+
+      </div>
+
+
+
+    {% block main %}  {% endblock main %}
+
+
+    <br>
+      <hr id="footHr" class="my-4" style="width: 70%;">
+
+    <div id="myFooter">
+    <p style="text-align: center; margin-top: 0px;">
+      <span style="color: black;">&bull;</span> <a href="{% url 'index' %}">Go To Home</a> <span style="color: black;">&bull;</span>
+      <a href="#" data-toggle="modal" data-target="#menuModal"> Menu </a> <span style="color: black;">&bull;</span>
+    </p>
+    </div>
+    <br>
+
+
+
+
+    <div class="modal fade" id="menuModal" style="background-color: black;" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="menuModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+      <div class="modal-content" style="background-color: black; color: white;">
+          <div class="modal-header">
+          <h5 class="modal-title" id="menuModalLabel" style="text-align: center;"><strong>Menu</strong></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true" style="color: yellow;">&times;</span>
+          </button>
+          </div>
+          <div class="modal-body" style="font-size: large; text-align: center; background-color: black; color: white;">
+
+            <p style="margin-top: 20px;" class="popping-one"> <a href="{% url 'index' %}"> Home </a> </p>
+            <p style="margin-top: 20px;" class="popping-one"> <a href="{% url 'booking' %}"> Booking </a> </p>
+            <p style="margin-top: 20px;" class="popping-one"> <a href="{% url 'gallary' %}"> Gallary </a> </p>
+            <p style="margin-top: 20px;" class="popping-one"> <a href="{% url 'about' %}"> About Us </a> </p>
+            <p style="margin-top: 20px;" class="popping-one"> <a href="{% url 'team' %}"> Team </a> </p>
+            <p style="margin-top: 20px;" class="popping-one"> <a href="{% url 'contact' %}"> Contact </a> </p>
+
+          </div>
+          <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> &nbsp;                               -->
+          </div>
+      </div>
+      </div>
+
+      <script>
+        $("#menuModal").modal('hide');
+      </script>
+
+
+
+</body>
+
+<script src="{% static '/js/jScript.js' %}"></script>
+
+</html>

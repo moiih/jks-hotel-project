@@ -1,0 +1,136 @@
+{% extends 'jks/navBar.html' %}
+
+{% block title %} Our Team {% endblock title %}
+
+{% load static %}
+{% load custom_templatetags %}
+
+{% block main %}
+
+<div class="container marketing">
+
+
+    <!-- Three columns of text below the carousel -->
+    <!-- <div class="row">
+      <div class="col-lg-4">
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+        <h2>Heading</h2>
+        <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+      </div>
+      <div class="col-lg-4">
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+        <h2>Heading</h2>
+        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+      </div>
+      <div class="col-lg-4">
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+        <h2>Heading</h2>
+        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+      </div>
+    </div> -->
+
+
+      <!-- Jumbotron -->
+    <div class="container" style="margin-bottom: 20px;">
+      <div id="teamJumbo" class="jumbotron" style="background-color: chartreuse;">
+          <!-- <div id="teamHead" class="h2 shadow p-2 mb-5 bg-warning rounded-pill" style="min-width: 250px; max-width: 500px; text-align: center; margin: 0 auto;">
+            <i class="far fa-smile"></i> Meet Out Team !!
+          </div> -->
+            <!-- <h1 id="teamHead"><i class="far fa-smile"></i> Meet Our Team !!</h1> -->
+
+            <h1 class="ml15">
+              <span class="word"><i class="far fa-smile"></i></span>
+              <span class="word">Meet</span>
+              <span class="word">Our</span>
+              <span class="word">Team</span>
+              <span class="word">!</span>
+              <span class="word">!</span>
+            </h1>
+
+            <p id="teamBio" class="lead"><i class="fas fa-user-friends"></i> We Are A Small Team Of One Person :-) with Big And Ambitious Dreams .... Get Ready To Fly With Us <i class="fab fa-twitter"></i></p>
+        </div>
+    </div>
+
+
+    <hr class="featurette-divider" style="margin-bottom: 30px; margin-top: 60px;">
+
+
+    <!-- START THE FEATURETTES -->
+
+    <div>
+        <span style="font-size: 15px">
+            <b><i>
+                *We warmly welcome & thank to all the members who have signed up on this hotel site. You can Sign up too and get your name and photo listed on this page like everybody else below!
+            </b> </i>
+        </span>
+    </div>
+
+
+    {% if p_user %}
+
+    {% for p in p_user %}
+
+
+      {% if forloop.counter|check_oddeve %}
+
+        <div class="row featurette">
+          <div class="col-md-7" style="margin-top: 60px;">
+            <h2 class="featurette-heading"> @{{ p.name }} #<span class="text-muted">{{ p.desc }}</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+          </div>
+          <div class="col-md-5">
+            <img src="{{ p.profile_img.url }}" style="margin: 0 auto;" class="rounded-circle" height="400px" width="400px" alt="Profile Image">
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+      {% else %}
+
+        <div class="row featurette">
+          <div class="col-md-7 order-md-2" style="margin-top: 60px;">
+            <h2 class="featurette-heading"> @{{ p.name }} #<span class="text-muted">{{ p.desc }}</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+          </div>
+          <div class="col-md-5 order-md-1">
+            <img src="{{ p.profile_img.url }}" style="margin: 0 auto;" class="rounded-circle"  height="400px" width="400px" alt="Profile Image">
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+      {% endif %}
+
+    {% endfor %}
+    {% endif %}
+
+  </div>
+
+
+
+
+
+  <script>
+
+      anime.timeline({loop: true})
+    .add({
+      targets: '.ml15 .word',
+      scale: [14,1],
+      opacity: [0,1],
+      easing: "easeOutCirc",
+      duration: 800,
+      delay: (el, i) => 600 * i
+    }).add({
+      targets: '.ml15',
+      opacity: 0,
+      duration: 1000,
+      easing: "easeOutExpo",
+      delay: 10000
+    });
+
+  </script>
+
+{% endblock main %}

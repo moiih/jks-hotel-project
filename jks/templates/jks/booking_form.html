@@ -1,0 +1,71 @@
+{% extends 'jks/navBar.html' %}
+
+{% block title %} Booking {% endblock title %}
+
+{% load static %}
+{% load widget_tweaks %}
+
+{% block main %}
+
+    <div class="image-container" style="background-image: url({% static '/img/clay-banks-LjqARJaJotc-unsplash.jpg' %});">
+
+        <form action="" method="POST" novalidate>
+
+            {% csrf_token %}
+            <div class="container">
+
+                <label for="addrs" style="margin-top: 60px;">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"> <i class="fas fa-map-marker-alt fa-lg"></i> &nbsp; Your Address : </span>
+                    </div>
+                </label>
+                {% render_field book.booker_address id="addrs" class="form-control" placeholder="Please Enter Your Address Here !" aria-label="Username" aria-describedby="basic-addon1" style="min-width: 300px; max-width: 500px;" %}
+
+
+                <label for="ememb" style="margin-top: 60px;">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"> <i class="fas fa-user-friends fa-lg"></i> &nbsp; Any Extra Members ? </span>
+                    </div>
+                </label>
+                {% render_field book.extra_members id="ememb" class="form-control" placeholder="Give Their First Names Only." aria-label="Username" aria-describedby="basic-addon1" style="min-width: 300px; max-width: 500px;" %}
+
+                <label for="mobile" style="margin-top: 60px;">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"> <i class="fas fa-phone-alt fa-lg"></i> &nbsp; Your Mobile : </span>
+                    </div>
+                </label>
+                {% render_field book.booker_mobile id="mobile" class="form-control" placeholder="Have Your Mobile Here !" aria-label="Username" aria-describedby="basic-addon1" style="min-width: 300px; max-width: 500px;" %}
+
+                <label for="occa" style="margin-top: 60px;">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"> <i class="fas fa-glass-cheers fa-lg"></i> &nbsp; Occasion For Booking : </span>
+                    </div>
+                </label>
+                {% render_field book.booking_occasion id="occa" class="form-control" placeholder="What Todays Plan Is All About ?" aria-label="Username" aria-describedby="basic-addon1" style="min-width: 300px; max-width: 500px;" %}
+
+                <label for="date" style="margin-top: 60px;">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"> <i class="fas fa-calendar-check fa-lg"></i> &nbsp; Planning Date : </span>
+                    </div>
+                </label>
+                {% render_field book.booking_date type="date" id="date" class="form-control" placeholder="For when do you want to book ?" aria-label="Username" aria-describedby="basic-addon1" style="min-width: 300px; max-width: 500px;" %}
+
+                <label for="time" style="margin-top: 60px;">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"> <i class="fas fa-stopwatch fa-lg"></i> &nbsp; Arrival Timimg : </span>
+                    </div>
+                </label>
+                {% render_field book.booking_time type="time" id="time" class="form-control" placeholder="Please give exact timings !" aria-label="Username" aria-describedby="basic-addon1" style="min-width: 300px; max-width: 500px; margin-bottom: 50px" %}
+
+                <input type="submit" class="btn btn-warning popping-one" style="min-width: 300px; max-width: 500px; margin-bottom: 200px;">
+
+                .
+
+
+            </div>
+
+        </form>
+
+    </div>
+
+{% endblock main %}

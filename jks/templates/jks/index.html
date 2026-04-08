@@ -1,0 +1,293 @@
+{% extends 'jks/navBar.html' %}
+
+{% block title %} Jks hotels {% endblock title %}
+
+{% load static %}
+
+{% block main %}
+
+    <!-- <div class="container"> -->
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script> -->
+
+
+        <!-- Carousel -->
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <!-- <img src="https://source.unsplash.com/3400x300/?friends" alt="Image"> -->
+            <img src="{% static '/img/chris-carzoli-VC1Ifrsi9Xo-unsplash.jpg' %}" alt="Image" height="350px" width="100%">
+            <div class="carousel-caption d-none d-md-block">
+              <h1 class="ml2">Welcome To JKS Hotels</h1>
+              <p> A brand that is trusted by everyone !!</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <!-- <img src="https://source.unsplash.com/1600x300/?nature,water" alt="Image"> -->
+            <img src="{% static '/img/food.jpg' %}" alt="Image" height="350px" width="100%">
+            <div class="carousel-caption d-none d-md-block">
+              <h1 class="ml6">
+                <span class="text-wrapper">
+                  <span class="letters" style="color: white;">Taste The Great Indian Cuisine!</span>
+                </span>
+              </h1>
+              <p><strong>The taste that will drive you drive crazy.</strong></p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <!-- <img src="https://source.unsplash.com/1600x300/?landscape,travel" alt="Image"> -->
+            <img src="{% static '/img/starry_sky_night_scene_5k-5120x2880.jpg' %}" alt="Image" height="350px" width="100%">
+            <div class="carousel-caption d-none d-md-block">
+              <h1 class="ml9">
+                <span class="text-wrapper">
+                  <span class="letters">A Place Where We Serve The Best <br> &nbsp; &nbsp; &nbsp;  Moments For You! ;-)</span>
+                </span>
+              </h1>
+              <p>Come here today to make your every moments memorable for you and your loved ones.</p>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+      <br>
+
+
+      <div class="h2 shadow p-2 mb-5 bg-warning rounded-pill click-pop" style="min-width: 250px; max-width: 500px; text-align: center; margin: 0 auto;">Hotel Highlights<sup style="font-size: x-large;">&copy;</sup></div>
+
+
+      <div class="container horizontal-flex">
+
+        <div class="card shadow-lg popping-two" style="width: 18rem;" id="card1">
+          <img src="{% static '/img/IMG_2366.jpg' %}" alt="Image" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title" style="font-weight: bold; text-decoration: none;">&starf; Wide Hall</h5>
+            <p class="card-text">The <strong>JKS Hotels<sup>&trade;</sup></strong> possesses a large and wide Utility Hall to your cheering up parties and other *various interesting stuff.</p>
+            <a href="{% url 'booking' %}" class="btn btn-primary">Let's Book Today!</a>
+          </div>
+        </div>
+
+        <div class="card shadow-lg popping-two" style="width: 18rem;" id="card2">
+          <img src="{% static '/img/IMG_2370.jpg' %}" alt="Image" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title" style="font-weight: bold;">&starf; ROG: Room Of Gamers</h5>
+            <p class="card-text">We take limits beyonds your imaginations, so we're featuring a dedicated <i><strong>"Legends Gaming Room"</strong></i> for gaming enthusiasts. </p>
+            <a href="{% url 'gallary' %}" class="btn btn-primary">Go To Gallary!</a>
+          </div>
+        </div>
+
+        <div class="card shadow-lg popping-two" style="width: 18rem;" id="card3">
+          <img src="{% static '/img/IMG_2364.jpg' %}" alt="Image" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title" style="font-weight: bold;">&starf; Experience Real 4k</h5>
+            <p class="card-text">Enjoy your every moment with an in-built Cinema Hall to sense the accent of real <i><strong>4k Display</strong></i> with vibrant colours. </p>
+            <a href="{% url 'team' %}" class="btn btn-primary">Meet Our Key Members!</a>
+          </div>
+        </div>
+
+      </div>
+      <br>
+
+
+
+      <!-- Demo Content -->
+      <div class="container">
+      <div class="jumbotron" style="margin: 0 auto;">
+        <div class="h2 p-2 mb-5 bg-success rounded-pill hover-glow-coral click-pop" style="color: white; max-width: 500px; text-align: center; margin: 0 auto;">&#8377; Premium Pricing &#8377;</div>
+
+          <table class="table table-hover" style="margin: 0 auto;">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Category</th>
+                <th scope="col">Add-Ons</th>
+                <th scope="col">Cost( *GST Inclusive )</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="popping-one">
+                <th>1</th>
+                <td>Premium</td>
+                <td><button class="specs btn btn-warning btn-sm" id="sp1">View</button></td>
+                <td>&#8377; 200 INR /-</td>
+              </tr>
+              <tr class="popping-one">
+                <th>2</th>
+                <td>Prime</td>
+                <td><button class="specs btn btn-primary btn-sm" id="sp2">View</button></td>
+                <td>&#8377; 100 INR /-</td>
+              </tr>
+              <tr class="popping-one">
+                <th>3</th>
+                <td>Budget</td>
+                <td><button class="specs btn btn-danger btn-sm" id="sp3">View</button></td>
+                <td>&#8377; 0 INR /-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <br>
+
+
+        <div class="row mb-2">
+          <div class="col-md-6" id="post-card shadow-lg">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+              <div class="col p-4 d-flex flex-column position-static">
+                <strong class="d-inline-block mb-2 text-primary">Join Our Community!</strong>
+                <h3 class="mb-0">Featured Post</h3>
+                <div class="mb-1 text-muted">Nov 12</div>
+                <p class="card-text mb-auto">Come and join our community to stay connected with us as everytime we post anything new get in touch all the way along.</p>
+                <a href="{% url 'about' %}" style="margin-top: 7px; color: black; text-decoration: none; width: fit-content;" class="popping-one"> <i class="fab fa-whatsapp fa-2x"></i> &nbsp; <i class="fab fa-facebook fa-2x"> </i> &nbsp; <i class="fab fa-instagram fa-2x"> </i> &nbsp; <i class="fab fa-twitter fa-2x"> </i> </a>
+              </div>
+
+              <div class="col-auto" style="margin: 0 auto; display: flex; flex-flow: column wrap;">
+                <img src="https://images.unsplash.com/photo-1544928147-79a2dbc1f389" style="margin: 0 auto;" height="250px" width="210px" alt="Post Image">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+              <div class="col p-4 d-flex flex-column position-static">
+                <strong class="d-inline-block mb-2 text-success">World Class Interior</strong>
+                <h3 class="mb-0">Post title</h3>
+                <div class="mb-1 text-muted">Nov 11</div>
+                <p class="mb-auto">We have recently renovated & decorated the design of our hotel interior with a wholeheartedly crafted state-of-the-art modern rooms.</p>
+                <!-- <span style="margin-top: 7px;"> <i class="fab fa-whatsapp fa-2x"></i> &nbsp; <i class="fab fa-facebook fa-2x"></i> &nbsp; <i class="fab fa-instagram fa-2x"></i> &nbsp; <i class="fab fa-twitter fa-2x"></i> </span> -->
+                <button class="btn btn-outline-dark " onclick="location.href='http://mohits23.pythonanywhere.com/about_us/';" style="margin-top: 7px;">Discover Posts!</button>
+              </div>
+
+              <div class="col-auto" style="margin: 0 auto; display: flex; flex-flow: column wrap;">
+                <img src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6" style="margin: 0 auto;" height="250px" width="210px" alt="Post Image">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="my-4" style="height: 10px;">
+
+
+        <div id="disclaimToggler" class="h3 shadow p-2 mb-5 bg-info rounded-pill popping-one" style="color: white; min-width: 250px; max-width: 300px; text-align: center; margin: 0 auto; cursor: pointer;"> <span id="dclmValue"><i class="fas fa-angle-double-down"></i> &nbsp; Disclaimer &nbsp; <i class="fas fa-angle-double-down"></i></span> </div>
+
+        <div id="disclaimer">
+          <hr class="my-4" style="height: 10px;">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante. Vestibulum id metus ac nisl bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet sagittis. In tincidunt orci sit amet elementum vestibulum. Vivamus fermentum in arcu in aliquam. Quisque aliquam porta odio in fringilla. Vivamus nisl leo, blandit at bibendum eu, tristique eget risus. Integer aliquet quam ut elit suscipit, id interdum neque porttitor. Integer faucibus ligula.Quis quam ut magna consequat faucibus. Pellentesque eget nisi a mi suscipit tincidunt. Ut tempus dictum risus. Pellentesque viverra sagittis quam at mattis. Suspendisse potenti. Aliquam sit amet gravida nibh, facilisis gravida odio. Phasellus auctor velit at lacus blandit, commodo iaculis justo viverra. Etiam vitae est arcu. Mauris vel congue dolor. Aliquam eget mi mi. Fusce quam tortor, commodo ac dui quis, bibendum viverra erat. Maecenas mattis lectus enim, quis tincidunt dui molestie euismod. Curabitur et diam tristique, accumsan nunc eu, hendrerit tellus. Tibulum consectetur scelerisque lacus, ac fermentum lorem convallis sed.</p>
+          <p>Orci facilisis, dignissim tortor vitae, ultrices mi. Vestibulum a iaculis lacus. Phasellus vitae convallis ligula, nec volutpat tellus. Vivamus scelerisque mollis nisl, nec vehicula elit egestas a. Sed luctus metus id mi gravida, faucibus convallis neque pretium. Maecenas quis sapien ut leo fringilla tempor vitae sit amet leo. Donec imperdiet tempus placerat. Pellentesque pulvinar ultrices nunc sed ultrices. Morbi vel mi pretium, fermentum lacus et, viverra tellus. Phasellus sodales libero nec dui convallis, sit amet fermentum sapien auctor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed eu elementum nibh, quis varius libero.Nam eget purus nec est consectetur vehicula. Nullam ultrices nisl risus, in viverra libero egestas sit amet. Etiam porttitor dolor non eros pulvinar malesuada. Vestibulum sit amet est mollis nulla tempus aliquet. Praesent luctus hendrerit arcu non laoreet. Morbi consequat placerat magna, ac ornare odio sagittis sed. Donec vitae ullamcorper purus. Vivamus non metus ac justo porta volutpat.</p>
+          <p>Pulvinar leo id risus pellentesque vestibulum. Sed diam libero, sodales eget sapien vel, porttitor bibendum enim. Donec sed nibh vitae lorem porttitor blandit in nec ante. Pellentesque vitae metus ipsum. Phasellus sed nunc ac sem malesuada condimentum. Etiam in aliquam lectus. Nam vel sapien diam. Donec pharetra id arcu eget blandit. Proin imperdiet mattis augue in porttitor. Quisque tempus enim id lobortis feugiat. Suspendisse tincidunt risus quis dolor fringilla blandit. Ut sed sapien at purus lacinia porttitor. Nullam iaculis, felis a pretium ornare, dolor nisl semper tortor, vel sagittis lacus est consequat eros. Sed id pretium nisl. Curabitur dolor nisl, laoreet vitae aliquam id.Nullam hendrerit justo non leo aliquet imperdiet. Etiam in sagittis lectus. Suspendisse ultrices placerat accumsan. Mauris quis dapibus orci. In dapibus velit blandit pharetra tincidunt. Quisque non sapien nec lacus condimentum facilisis ut iaculis enim. Sed viverra interdum bibendum. Donec ac sollicitudin dolor. Sed fringilla vitae lacus at rutrum. Phasellus congue vestibulum ligula sed consequat.</p>
+          <p>Enim arcu, interdum vel metus dignissim, venenatis feugiat purus. Nulla posuere orci ut leo sodales, sed cursus dolor ornare. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam sit amet quam orci. Nulla sollicitudin lectus eget posuere venenatis. Sed vestibulum elementum sagittis. Quisque tristique tortor quis feugiat sollicitudin. Ut pellentesque luctus vulputate. Ut at odio ac erat blandit vehicula ut eget urna. In hac habitasse platea dictumst. Nullam ut iaculis nibh, eget eleifend elit.Convallis eget pretium eu, bibendum non leo. Proin suscipit purus adipiscing dolor gravida, in fermentum sapien blandit. Praesent pellentesque ligula dui, in gravida turpis vehicula ac. Pellentesque hendrerit nunc ut luctus hendrerit. Aliquam nec tincidunt urna. Ut interdum nec odio non interdum. Curabitur ligula justo, dapibus non ligula tristique, dapibus tristique nulla. Aliquam pulvinar dapibus eros, rutrum pretium urna iaculis ut. Nam est est, tempus id egestas et, viverra in dui. Aliquam gravida orci tortor, sed congue justo ornare vel. Cras in quam consectetur eros varius scelerisque. Ut vel fermentum purus. Nullam interdum blandit turpis, id pellentesque massa feugiat at. Ut sed lectus lectus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla rutrum, ante quis convallis ultricies, magna quam rhoncus erat, in lacinia libero magna a ipsum.</p>
+          <p>Fusce enim arcu, interdum vel metus dignissim, venenatis feugiat purus. Nulla posuere orci ut leo sodales, sed cursus dolor ornare. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam sit amet quam orci. Nulla sollicitudin lectus eget posuere venenatis. Sed vestibulum elementum sagittis. Quisque tristique tortor quis feugiat sollicitudin. Ut pellentesque luctus vulputate. Ut at odio ac erat blandit vehicula ut eget urna. In hac habitasse platea dictumst. Nullam ut iaculis nibh, eget eleifend elit.</p>
+          <p><strong>&copy; All Investments Are Subjected To Market Risks....Please Read All Scheme Related Documents Carefully !! <br> &nbsp; &nbsp; <sup>*</sup>Pictures Are For Representation Purpose Only. Actual Services May Vary !!</strong></p>
+        </div>
+
+        <br><br><br><br><br><br><br>
+
+      </div>
+
+
+      <script>
+
+        $("#disclaimToggler").click(function() {
+          if( document.getElementById("disclaimToggler").innerHTML.includes("Disclaimer") ) {
+            document.getElementById("disclaimToggler").innerHTML = "<i class='fas fa-angle-double-up'></i> &nbsp; Close &nbsp; <i class='fas fa-angle-double-up'></i>";
+          }
+          else {
+            document.getElementById("disclaimToggler").innerHTML = "<i class='fas fa-angle-double-down'></i> &nbsp; Disclaimer &nbsp; <i class='fas fa-angle-double-down'></i>";
+          }
+        });
+
+
+        $("#disclaimer").hide();
+          $("#disclaimToggler").click(function() {
+            $("#disclaimer").slideToggle(800);
+        });
+
+
+        $(".specs").click(function() {
+            var sid = this.id;
+            if( sid == 'sp1' )
+              alert("You Will Get:- \n(1) Chef's Special Food Menu\n(2) Access To Gaming Room\n(3) Terrace Access\n(4) Access To Cinama 4k with Built-in Cozy Bed\n(5) Late Evening Party\n(6) 24X7 Customer Support");
+            else if( sid == 'sp2' )
+              alert("You Will Get:- \n(1) Chef's Fast Food\n(2) Access To Gaming Room\n(3) Terrace Access\n(4) Party Hall + Bedroom");
+            else
+              alert("You Will Get:- \n(1) Water (Unlimited) + Basic Starters (if any available)\n(2) No Access To Gaming Room\n(3) Terrace Access\n(4) No Party Hall");
+        });
+
+
+        // Wrap every letter in a span
+        var textWrapper = document.querySelector('.ml2');
+        textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+        anime.timeline({loop: true})
+          .add({
+            targets: '.ml2 .letter',
+            scale: [4,1],
+            opacity: [0,1],
+            translateZ: 0,
+            easing: "easeOutExpo",
+            duration: 2000,
+            delay: (el, i) => 70*i
+          }).add({
+            targets: '.ml2',
+            opacity: 0,
+            duration: 1000,
+            easing: "easeOutExpo",
+            delay: 1000
+          });
+
+
+        // Wrap every letter in a span
+        var textWrapper = document.querySelector('.ml6 .letters');
+        textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+        anime.timeline({loop: true})
+          .add({
+            targets: '.ml6 .letter',
+            translateY: ["1.1em", 0],
+            translateZ: 0,
+            duration: 750,
+            delay: (el, i) => 50 * i
+          }).add({
+            targets: '.ml6',
+            opacity: 0,
+            duration: 1000,
+            easing: "easeOutExpo",
+            delay: 1000
+          });
+
+
+          // Wrap every letter in a span
+        var textWrapper = document.querySelector('.ml9 .letters');
+        textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+        anime.timeline({loop: true})
+          .add({
+            targets: '.ml9 .letter',
+            scale: [0, 1],
+            duration: 1500,
+            elasticity: 600,
+            delay: (el, i) => 45 * (i+1)
+          }).add({
+            targets: '.ml9',
+            opacity: 0,
+            duration: 1000,
+            easing: "easeOutExpo",
+            delay: 1000
+          });
+
+      </script>
+
+
+
+{% endblock main %}
+
