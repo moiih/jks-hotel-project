@@ -14,7 +14,7 @@ A responsive and fully functional website deployed on 🐍PythonAnywhere backed 
   - ✅ Beautiful photo gallary 📸 of the hotel amenities and interiors.
   - ✅ Global live chat for all users where any user put their complaints or feedback.
 
-
+<div style="width: 2px; border: none; outline: none;"></div>
 
 - ## **Video Demonstration: 👇**
 
