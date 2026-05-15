@@ -8,8 +8,20 @@ A responsive and fully functional website deployed on 🐍PythonAnywhere backed 
 
 
 ***🔑 Few Key Features Include The Following: ⏬***
-  - ✅ Interactive and responsive website design.
+  - ✅ Interactive and responsive website design suitable for both 📱mobiles, 💻laptops/PCs.
   - ✅ Customizable profile page for each user.
-  - ✅ Community Posts where users can share anything that's going on in their minds.
+  - ✅ Community Posts where users can share anything that's going-on in their minds.
+  - ✅ Beautiful photo gallary 📸 of the hotel amenities and interiors.
+  - ✅ Global live chat for all users where any user put their complaints or feedback.
 
-*....More content to be added soon, probably today 15th!*
+
+- ## **Video Demonstration: 👇**
+
+- https://github.com/user-attachments/assets/475cec3e-3689-4e88-92db-5a6aaa763d0d
+
+
+
+
+    
+
+
