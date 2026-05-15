@@ -9,7 +9,7 @@ A responsive and fully functional website deployed on 🐍PythonAnywhere backed 
 
 *🌟 Explore all features without any signup or login, use the following link:*
 
-<a href="https://mohits23.pythonanywhere.com/guest_login/" target="_blank" rel="noopener noreferrer">https://mohits23.pythonanywhere.com/guest_login/</a>
+&emsp; &emsp; ***👉 &nbsp; &nbsp; [https://mohits23.pythonanywhere.com/guest_login/](https://mohits23.pythonanywhere.com/guest_login/)***
 
 <br>
 
