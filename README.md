@@ -17,7 +17,14 @@ A responsive and fully functional website deployed on 🐍PythonAnywhere backed 
 
 - ## **Video Demonstration: 👇**
 
-- https://github.com/user-attachments/assets/475cec3e-3689-4e88-92db-5a6aaa763d0d
+https://github.com/user-attachments/assets/475cec3e-3689-4e88-92db-5a6aaa763d0d
+
+
+
+
+
+
+
 
 
 
